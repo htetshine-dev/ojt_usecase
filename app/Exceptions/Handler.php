@@ -5,6 +5,7 @@ namespace App\Exceptions;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
 use Domain\Exceptions\TestException;
+use Domain\ValueObject\Common\ErrorCode;
 
 class Handler extends ExceptionHandler
 {
@@ -40,7 +41,8 @@ class Handler extends ExceptionHandler
 
         $this->renderable(function (TestException $e, $request) {
             $errorCode = $e->code;
-            return response()->view('error', compact('e'));
+
+            return response()->view('error', compact('e'), ErrorCode::getStatusCode($errorCode));
         });
     }
 }

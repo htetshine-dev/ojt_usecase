@@ -4,6 +4,7 @@ namespace Domain\Input;
 
 use Domain\Input\BaseInput;
 use Domain\Exceptions\TestException;
+use Domain\ValueObject\Common\ErrorCode;
 
 
 /**
@@ -20,6 +21,6 @@ class TestInput implements BaseInput
     public function validate()
     {
         if (is_null($this->test))
-            throw new TestException('400', 'invalid parameter : test');
+            throw new TestException(ErrorCode::KD_ERROR_000_0002, 'invalid parameter : test');
     }
 }

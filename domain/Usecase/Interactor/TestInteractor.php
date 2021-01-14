@@ -29,7 +29,8 @@ class TestInteractor implements TestUsecase
     public function handle(TestInput $input): TestOutput
     {
         //Todo
-        $input->validate();
+        
+        // $input->validate();
 
         $testData = $this->testRepository->getTest();
 
