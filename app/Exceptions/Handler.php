@@ -4,6 +4,7 @@ namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
+use Domain\Exceptions\TestException;
 
 class Handler extends ExceptionHandler
 {
@@ -37,9 +38,9 @@ class Handler extends ExceptionHandler
             //
         });
 
-        $this->renderable(function (KdWebApiException $e, $request) {
+        $this->renderable(function (TestException $e, $request) {
             $errorCode = $e->code;
-            return View('error', compact('e'));
+            return response()->view('error', compact('e'));
         });
     }
 }
